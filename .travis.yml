@@ -18,7 +18,7 @@ after_success:
   - docker build -t denebgarza/multi-worker ./worker
   # Login to docker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push degarza/multi-client
-  - docker push degarza/multi-nginx
-  - docker push degarza/multi-server
-  - docker push degarza/multi-worker
+  - docker push denebgarza/multi-client
+  - docker push denebgarza/multi-nginx
+  - docker push denebgarza/multi-server
+  - docker push denebgarza/multi-worker
