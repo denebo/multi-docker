@@ -12,10 +12,10 @@ script:
 
 after_success:
   # Prepare prod builds
-  - docker build -t degarza/multi-client ./client
-  - docker build -t degarza/multi-nginx ./nginx
-  - docker build -t degarza/multi-server ./multi
-  - docker build -t degarza/multi-worker ./worker
+  - docker build -t denebgarza/multi-client ./client
+  - docker build -t denebgarza/multi-nginx ./nginx
+  - docker build -t denebgarza/multi-server ./multi
+  - docker build -t denebgarza/multi-worker ./worker
   # Login to docker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push degarza/multi-client
