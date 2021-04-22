@@ -14,7 +14,7 @@ after_success:
   # Prepare prod builds
   - docker build -t denebgarza/multi-client ./client
   - docker build -t denebgarza/multi-nginx ./nginx
-  - docker build -t denebgarza/multi-server ./multi
+  - docker build -t denebgarza/multi-server ./server
   - docker build -t denebgarza/multi-worker ./worker
   # Login to docker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
