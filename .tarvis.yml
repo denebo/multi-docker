@@ -1,0 +1,24 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  # Prepare test build
+  - docker build -t degarza/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  # Run tests
+  - docker run -e CI=true degarza/react-test npm test
+
+after_success:
+  # Prepare prod builds
+  - docker build -t degarza/multi-client ./client
+  - docker build -t degarza/multi-nginx ./nginx
+  - docker build -t degarza/multi-server ./multi
+  - docker build -t degarza/multi-worker ./worker
+  # Login to docker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push degarza/multi-client
+  - docker push degarza/multi-nginx
+  - docker push degarza/multi-server
+  - docker push degarza/multi-worker
